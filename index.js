@@ -1,13 +1,9 @@
+const fs = require('fs');
 const inquirer = require('inquirer');
+const generateMarkdown = require('./utils/generate-markdown.js');
 
 // TODO: Create an array of questions for user input
-const promptUser = projectData => {
-
-    if (!projectData) {
-        projectData = [];
-    }
-
-    return inquirer.prompt([
+const questions = [
 
         {
             type: 'input',
@@ -104,17 +100,27 @@ const promptUser = projectData => {
                 }
             }
         }
-    ])
-    .then(projectAnswers => {
-        projectData.push(projectAnswers);
-        console.log(projectData);
-        return projectData;
-    })
+];
+
+
+function createFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            return console.log(err);
+        }
+        console.log('File successfully created. Look for it in the root directory.');
+    });
+}
+
+async function init() {
+    try {
+        const answers = await inquirer.prompt(questions);
+        const markdown = generateMarkdown(answers);
+
+        await createFile('README.md', markdown);
+    } catch (error) {
+        console.log(error);
+    }
 };
 
-promptUser()
-    .then(projectData => {
-        return generateMarkdown(projectData);
-    })
-// TODO: Create a function to write README file
-//function writeToFile(fileName, data) {}
+init();

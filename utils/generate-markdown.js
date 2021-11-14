@@ -23,38 +23,38 @@ const generateContribution = contributionText => {
 }
 
 const generateTesting = testingText => {
-  if (!testingText)
+  if (!testingText) {
   return '';
+  }
+
+  return `
+  ## Testing Instructions
+  ${data.testing}
+  `
 }
 
-return `
-## Testing Instructions
-${data.testing}
-`
+const generateMarkdown = () => {
+    return `
+            # ${data.title}
 
-function generateMarkdown(data) {
-  return `# ${data.title}
+            ## Description
+            ${data.description}
 
-  ## Description
-  ${data.description}
+            ## Installation Instructions
+            ${data.install}
 
-  ## Installation Instructions
-  ${data.install}
+            ## Usage Instructions
+            ${data.usage}
 
-  ## Usage Instructions
-  ${data.usage}
+            ${generateContribution(contribution)}
 
-  ${generateContribution(contribution)}
+            ${generateTesting(testing)}
 
-  ${generateTesting(testing)}
-
-  ## Questions
-  If you have additional questions, contact me at:
-  GitHub: ${data.github}
-  Email: ${data.email}
-
-
-`;
-}
+            ## Questions
+            If you have additional questions, contact me at:
+            GitHub: ${data.github}
+            Email: ${data.email}
+    `;
+};
 
 module.exports = generateMarkdown;
