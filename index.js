@@ -118,6 +118,7 @@ async function init() {
     try {
         const answers = await inquirer.prompt(questions);
         console.log(answers);
+        
         const markdown = generateMarkdown(answers);
 
         createFile('README.md', markdown);
