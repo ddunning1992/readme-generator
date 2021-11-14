@@ -1,60 +1,71 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// TODO: Create a function to generate markdown for README
-const generateContribution = contributionText => {
-  if (!contributionText) {
+function generateContribution() {
+  if (answers.contribution) {
+    return `
+    ## Contribution
+    ${answers.contribution}`
+  } else {
     return '';
   }
+};
 
-  return `
-  ## How to Contribute
-  ${data.contribution}
-  `
-}
-
-const generateTesting = testingText => {
-  if (!testingText) {
-  return '';
-  }
-
-  return `
-  ## Testing Instructions
-  ${data.testing}
-  `
-}
-
-const generateMarkdown = () => {
+function generateTesting() {
+  if (answers.testing) {
     return `
-            # ${data.title}
+    ## Testing
+    ${answers.testing}`
+  } else {
+    return '';
+  }
+};
 
-            ## Description
-            ${data.description}
+function generateMarkdown(answers) {
 
-            ## Installation Instructions
-            ${data.install}
+  //create table of contents
+  let generateTableOfContents = `## Table of Contents`;
+  if (answers.install) {
+    generateTableOfContents += `
+    * [Installation](#installation)`
+  };
+  if (answers.usage) {
+    generateTableOfContents += `
+    * [Usage](#usage)`
+  };
+  if (answers.contribution) {
+    generateTableOfContents += `
+    * [Contribution](#contribution)`
+  };
+  if (answers.testing) {
+    generateTableOfContents += `
+    * [Testing](#testing)`
+  };
 
-            ## Usage Instructions
-            ${data.usage}
-
-            ${generateContribution(contribution)}
-
-            ${generateTesting(testing)}
-
-            ## Questions
-            If you have additional questions, contact me at:
-            GitHub: ${data.github}
-            Email: ${data.email}
+  //create the bulk of the markdown from user answers
+  let createMarkdown =
+    `# ${answers.title}
+  
+    ## Project Description
+    ${answers.description}
+    
+    ${generateTableOfContents}
+    
+    ## Installation
+    ${answers.install}
+    
+    ## Usage
+    ${answers.usage}
+    
+    ${generateContribution()}
+    
+    ${generateTesting()}
+    
+    ## Questions
+    For further information or questions regarding this project contact me at:
+    GitHub: ${answers.github}
+    Email: ${answers.email}
     `;
+    createMarkdown += generateTableOfContents;
+    console.log(createMarkdown);
+    return createMarkdown;
 };
 
 module.exports = generateMarkdown;

@@ -103,6 +103,8 @@ const questions = [
 ];
 
 
+
+
 function createFile(fileName, data) {
     fs.writeFile(fileName, data, err => {
         if (err) {
@@ -115,9 +117,10 @@ function createFile(fileName, data) {
 async function init() {
     try {
         const answers = await inquirer.prompt(questions);
+        console.log(answers);
         const markdown = generateMarkdown(answers);
 
-        await createFile('README.md', markdown);
+        createFile('README.md', markdown);
     } catch (error) {
         console.log(error);
     }
