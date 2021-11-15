@@ -76,6 +76,11 @@ const questions = [
         },
         {
             type: 'input',
+            name: 'links',
+            message: 'Provide any links for videos or screenshots you would like added to the document.'
+        },
+        {
+            type: 'input',
             name: 'github',
             message: 'Please provide a link to your GitHub profile. (Required)',
             validate: nameInput => {
