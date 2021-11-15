@@ -18,6 +18,8 @@ Copy or clone application files into the folder of your choice. Navigate to the 
     
 ## Usage
 Open the command line at the root directory. Type "node index.js" and press enter. Follow the prompts, and your README.md should be placed into the root directory when complete.
+
+https://watch.screencastify.com/v/Ne7TVTl3BrOc8ksY5NR5
     
 
     
