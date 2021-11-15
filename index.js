@@ -71,7 +71,7 @@ const questions = [
             type: 'list',
             name: 'license',
             message: 'What license badge would you like to inlude?',
-            choices: ['MIT', 'GPLv3', 'GPL', 'none'],
+            choices: ['MIT', 'GPLv2', 'Apache', 'None'],
             default: 'none'
         },
         {
@@ -117,8 +117,7 @@ function createFile(fileName, data) {
 async function init() {
     try {
         const answers = await inquirer.prompt(questions);
-        console.log(answers);
-        
+        //console.log(answers);
         const markdown = generateMarkdown(answers);
 
         createFile('README.md', markdown);
