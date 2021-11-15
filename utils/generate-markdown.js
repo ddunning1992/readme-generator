@@ -32,8 +32,8 @@ return '';
 
 function generateLinks(answers) {
   if (answers.links) {
-return `## Media and Screenshots
- ${answers.links}`
+return `## Screenshots
+ ![](${answers.links})`
   }
 }
 
@@ -42,14 +42,12 @@ function generateMarkdown(answers) {
 
   //create table of contents
   let generateTableOfContents = `## Table of Contents`;
-  if (answers.install) {
     generateTableOfContents += `
 * [Installation](#installation)`
-  };
-  if (answers.usage) {
+  ;
     generateTableOfContents += `
 * [Usage](#usage)`
-  };
+  ;
   if (answers.contribution) {
     generateTableOfContents += `
 * [Contribution](#contribution)`
@@ -58,6 +56,13 @@ function generateMarkdown(answers) {
     generateTableOfContents += `
 * [Testing](#testing)`
   };
+  if (answers.links) {
+    generateTableOfContents += `
+* [Screenshots](#screenshots)`
+  };
+  generateTableOfContents += `
+* [Questions](#questions)`
+  ;
 
   //create the bulk of the markdown from user answers
   let createMarkdown =

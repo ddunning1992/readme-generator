@@ -77,7 +77,7 @@ const questions = [
         {
             type: 'input',
             name: 'links',
-            message: 'Provide any links for videos or screenshots you would like added to the document.'
+            message: 'Provide a link to a screenshot you would like to share in the document.'
         },
         {
             type: 'input',
